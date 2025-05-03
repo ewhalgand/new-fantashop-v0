@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { prisma } from "db/client.js";
+import { prisma } from "../db/client.js";
 
 export const auth = betterAuth({
   socialProviders: {
@@ -11,9 +11,11 @@ export const auth = betterAuth({
     },
   },
   secret: process.env.AUTH_SECRET,
-  pages: {
-    signIn: "/auth/login",
-    error: "/auth/error",
+  baseURL: "http://localhost:3001/api/auth",
+  trustedOrigins: ["http://localhost:5173"],
+  cookies: {
+    secure: false,
+    sameSite: "Lax",
   },
   database: prismaAdapter(prisma, { provider: "postgresql" }),
 });
