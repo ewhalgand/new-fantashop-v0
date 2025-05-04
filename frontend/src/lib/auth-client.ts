@@ -1,4 +1,15 @@
 import { createAuthClient } from "better-auth/svelte";
+import { writable } from "svelte/store";
+
+interface userData {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  image?: string | null | undefined;
+}
 
 export const authClient = createAuthClient({
   baseURL: "http://localhost:3001/api/auth",
@@ -6,6 +17,19 @@ export const authClient = createAuthClient({
     credentials: "include",
   },
 });
+
+export const user = writable<userData | null>(null);
+export const authLoading = writable(true);
+
+export const initAuth = async () => {
+  const { data: session } = await authClient.getSession();
+
+  if (session?.user) {
+    user.set(session.user);
+  }
+
+  authLoading.set(false);
+};
 
 export const login = async () => {
   await authClient.signIn.social({

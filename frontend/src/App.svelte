@@ -3,11 +3,20 @@
   import Router from "svelte-spa-router";
   import { routes } from "./routes/routes";
   import Header from "./components/Header.svelte";
+  import { onMount } from "svelte";
+  import { authLoading, initAuth } from "./lib/auth-client";
+  import Loader from "./components/Loader.svelte";
+
+  onMount(() => {
+    initAuth();
+  });
 </script>
 
-<Layout>
-  <Header />
-  <main>
+{#if $authLoading}
+  <Loader />
+{:else}
+  <Layout>
+    <Header />
     <Router {routes} />
-  </main>
-</Layout>
+  </Layout>
+{/if}

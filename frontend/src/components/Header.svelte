@@ -1,28 +1,10 @@
 <script lang="ts">
   import logoImg from "../assets/logo-fs.svg";
   import cartIcon from "../assets/icons/cart-outline.svg";
-  import menuIcon from "../assets/icons/menu.svg";
-  import { onMount } from "svelte";
-  import { authClient, login, logout } from "../lib/auth-client";
+  import { link } from "svelte-spa-router";
+  import { login, user } from "../lib/auth-client";
 
-  let user: any = null;
   let open = false;
-
-  const handleLogin = () => {
-    login();
-  };
-
-  onMount(async () => {
-    const { data: session } = await authClient.getSession();
-
-    if (session?.user) {
-      user = session.user;
-    }
-  });
-
-  const handleLogout = () => {
-    logout();
-  };
 </script>
 
 <header class="bg-[#04090e]">
@@ -30,32 +12,36 @@
     class="relative flex items-center justify-between h-20 px-4 md:px-8 md:grid md:grid-cols-3"
   >
     <div class="flex items-center">
-      <img src={logoImg} alt="Logo Fantashop" class="w-20" />
+      <img src={logoImg} alt="Logo Fantashop" class="w-15 md:w-20" />
     </div>
 
     <div class="hidden md:flex justify-center gap-6">
-      <a class="text-gray" href="#/">Recrutement</a>
-      <a class="text-gray" href="#/">News</a>
+      <a
+        class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
+        href="#/">Recrutement</a
+      >
+      <a
+        class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
+        href="#/">News</a
+      >
     </div>
 
     <div class="hidden md:flex items-center justify-end gap-4">
       <a
         href="#/"
-        class="flex items-center gap-2 text-white bg-gradient-to-r from-purple-light to-purple-dark p-2 rounded-bl-2xl rounded-tr-2xl"
+        class="flex items-center gap-2 text-white bg-gradient-to-r from-purple-light to-purple-dark py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out"
       >
         <img src={cartIcon} alt="Panier" class="w-5 h-5" />
-        <span>Boutique</span>
+        <span class="font-semibold">Boutique</span>
       </a>
 
       {#if !user}
-        <button class="text-white" on:click={handleLogin}>
-          Se Connecter
-        </button>
+        <button class="text-white" on:click={login}> Se Connecter </button>
       {:else}
-        <a href="#/" class="text-white w-14">
+        <a href="/profil" class="text-white w-14" use:link>
           <img
             class="rounded-full outline-1 outline-white border-2 border-[#04090e]"
-            src={user.image}
+            src={$user?.image}
             alt="logo utilisateur"
           />
         </a>
@@ -111,23 +97,30 @@
       ${open ? "max-h-[350px] py-6" : "max-h-0"}
       md:hidden`}
     >
-      <a class="text-gray" href="#/">Recrutement</a>
-      <a class="text-gray" href="#/">News</a>
+      <a
+        class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
+        href="#/">Recrutement</a
+      >
+      <a
+        class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
+        href="#/">News</a
+      >
 
-      <a href="#/" class="flex items-center gap-2 text-white">
+      <a
+        href="#/"
+        class="flex items-center gap-2 text-white bg-gradient-to-r from-purple-light to-purple-dark py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out"
+      >
         <img src={cartIcon} alt="Panier" class="w-5 h-5" />
-        <span>Boutique</span>
+        <span class="font-semibold">Boutique</span>
       </a>
 
       {#if !user}
-        <button class="text-white" on:click={handleLogin}>
-          Se Connecter
-        </button>
+        <button class="text-white" on:click={login}> Se Connecter </button>
       {:else}
-        <a href="#/" class="text-white w-12">
+        <a href="/profil" class="text-white w-12" use:link>
           <img
             class="rounded-full outline-1 outline-white border-2 border-[#04090e]"
-            src={user.image}
+            src={$user?.image}
             alt="logo utilisateur"
           />
         </a>
