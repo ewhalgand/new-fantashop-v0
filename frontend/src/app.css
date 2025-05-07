@@ -12,11 +12,9 @@ html {
   padding: 0;
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: #04090e;
-  /* max-width: 1400px;
-  margin: auto; */
-  /* overflow-x: hidden; */
 }

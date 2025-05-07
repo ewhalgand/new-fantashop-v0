@@ -7,13 +7,13 @@
   let open = false;
 </script>
 
-<header class="bg-[#04090e]">
+<header class="bg-[#04090e] max-w-[1400px] m-auto">
   <nav
     class="relative flex items-center justify-between h-20 px-4 md:px-8 md:grid md:grid-cols-3"
   >
-    <div class="flex items-center">
+    <a class="flex items-center" href="/">
       <img src={logoImg} alt="Logo Fantashop" class="w-15 md:w-20" />
-    </div>
+    </a>
 
     <div class="hidden md:flex justify-center gap-6">
       <a
@@ -22,26 +22,32 @@
       >
       <a
         class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
-        href="#/">News</a
+        href="#news">News</a
       >
     </div>
 
     <div class="hidden md:flex items-center justify-end gap-4">
       <a
-        href="#/"
+        href="/shop"
         class="flex items-center gap-2 text-white bg-gradient-to-r from-purple-light to-purple-dark py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out"
+        use:link
       >
         <img src={cartIcon} alt="Panier" class="w-5 h-5" />
         <span class="font-semibold">Boutique</span>
       </a>
 
-      {#if !user}
-        <button class="text-white" on:click={login}> Se Connecter </button>
+      {#if !$user}
+        <button
+          class="text-white border-2 border-white py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out cursor-pointer"
+          on:click={login}
+        >
+          Se Connecter
+        </button>
       {:else}
         <a href="/profil" class="text-white w-14" use:link>
           <img
             class="rounded-full outline-1 outline-white border-2 border-[#04090e]"
-            src={$user?.image}
+            src={$user.image}
             alt="logo utilisateur"
           />
         </a>
@@ -103,24 +109,30 @@
       >
       <a
         class="text-gray relative after:content-[''] after:h-1 after:w-0 after:absolute after:bg-purple-light after:left-0 after:bottom-0 hover:after:w-full after:transition-all after:duration-500 hover:after:transition-all hover:after:duration-300"
-        href="#/">News</a
+        href="#news">News</a
       >
 
       <a
-        href="#/"
+        href="/shop"
         class="flex items-center gap-2 text-white bg-gradient-to-r from-purple-light to-purple-dark py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out"
+        use:link
       >
         <img src={cartIcon} alt="Panier" class="w-5 h-5" />
         <span class="font-semibold">Boutique</span>
       </a>
 
-      {#if !user}
-        <button class="text-white" on:click={login}> Se Connecter </button>
+      {#if !$user}
+        <button
+          class="text-white border-2 border-white py-1 px-3 rounded-bl-2xl rounded-tr-2xl hover:rounded-br-2xl hover:rounded-tl-2xl hover:rounded-bl-none hover:rounded-tr-none hover:transition-all duration-300 ease-in-out cursor-pointer"
+          on:click={login}
+        >
+          Se Connecter
+        </button>
       {:else}
         <a href="/profil" class="text-white w-12" use:link>
           <img
             class="rounded-full outline-1 outline-white border-2 border-[#04090e]"
-            src={$user?.image}
+            src={$user.image}
             alt="logo utilisateur"
           />
         </a>

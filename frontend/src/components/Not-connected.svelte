@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { login } from "../lib/auth-client";
+  import { login, user } from "../lib/auth-client";
 </script>
 
 <section>

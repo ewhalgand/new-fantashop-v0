@@ -6,6 +6,7 @@
   import { onMount } from "svelte";
   import { authLoading, initAuth } from "./lib/auth-client";
   import Loader from "./components/Loader.svelte";
+  import Footer from "./components/Footer.svelte";
 
   onMount(() => {
     initAuth();
@@ -18,5 +19,6 @@
   <Layout>
     <Header />
     <Router {routes} />
+    <Footer />
   </Layout>
 {/if}

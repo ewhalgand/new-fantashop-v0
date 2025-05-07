@@ -37,7 +37,8 @@
 </script>
 
 <section
-  class="relative flex flex-col items-center gap-4 mt-20 p-4 md:mt-36 lg:overflow-hidden"
+  id="news"
+  class="relative flex flex-col items-center max-w-[1600px] m-auto gap-4 mt-20 p-4 md:mt-36 lg:overflow-hidden"
 >
   <h1
     class="text-white text-5xl font-black underline decoration-purple-light md:text-[5.2rem]"

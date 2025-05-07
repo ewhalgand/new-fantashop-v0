@@ -2,7 +2,7 @@
   export let data;
 </script>
 
-<div class={`relative w-72 h-90 rounded-2xl overflow-hidden`}>
+<div class="relative w-72 h-90 rounded-2xl overflow-hidden">
   <div
     class="absolute inset-0 bg-cover bg-center brightness-50"
     style="background-image: url({data.image})"
